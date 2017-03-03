@@ -6,6 +6,11 @@ public class Player implements Character {
 	
 	private int strength;
 	
+	private int x;
+	private int y;
+	private int dx;
+	private int dy;
+	
 	private Inventory inventory;
 	
 	public Player(int health, String name) {
@@ -44,5 +49,37 @@ public class Player implements Character {
 	
 	public void setStrength(int strength) {
 		this.strength = strength;
+	}
+	
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
+	public int getDx() {
+		return dx;
+	}
+	
+	public void setDx(int dx) {
+		this.dx = dx;
+	}
+	
+	public int getDy() {
+		return dy;
+	}
+	
+	public void setDy(int dy) {
+		this.dy = dy;
 	}
 }
