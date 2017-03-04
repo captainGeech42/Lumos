@@ -5,8 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 import java.awt.event.KeyListener;
 
@@ -54,7 +53,7 @@ public class Game implements KeyListener{
 		window.setResizable(false);
 		window.setVisible(true);
 		window.getContentPane().setBackground(Color.LIGHT_GRAY);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		window.add(textarea);
 		textarea.setBounds(10, 10, 490, 490);
 		textarea.addKeyListener(this);
@@ -62,8 +61,8 @@ public class Game implements KeyListener{
 		
 		renderFrame();
 	}
-	
-	public boolean update(char[][] frame) {
+
+	private boolean update(char[][] frame) {
 		if (frame.length != height && frame[0].length != width) {
 			//make sure that new frame is valid dimensions
 			return false;
@@ -79,7 +78,7 @@ public class Game implements KeyListener{
 		return true;
 	}
 	
-	public void renderFrame() {
+	private void renderFrame() {
 		resetWindow();
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
@@ -106,21 +105,18 @@ public class Game implements KeyListener{
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		System.out.println(String.format("%s key pressed", e.getKeyCode()));
 		wait(250);
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 		System.out.println(String.format("%s key released", e.getKeyCode()));
 		wait(250);
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 		System.out.println(String.format("%s key typed", e.getKeyCode()));
 		wait(250);
 	}
