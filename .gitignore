@@ -1,7 +1,12 @@
+# Eclipse
 .settings
 .classpath
 .project
-bin/*
+bin/
 bin
-target/*
+target/
 target
+
+# IntelliJ
+.idea/
+*.iml
