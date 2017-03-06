@@ -9,7 +9,7 @@ import javax.swing.*;
 
 import java.awt.event.KeyListener;
 
-public class Game implements KeyListener{
+public class Game implements KeyListener {
 	private char[][] frame;
 	private Player player;
 	
@@ -46,16 +46,19 @@ public class Game implements KeyListener{
 		textarea.setForeground(Color.BLACK);
 		textarea.setBackground(Color.LIGHT_GRAY);
 
+
+		final int jframeWidth = 640;
+		final int jframeheight = 480;
 		window = new JFrame("Lumos");
 		window.setLayout(null);
 		window.setLocation(0,0);
-		window.setSize(new Dimension(500,500));
+		window.setSize(new Dimension(jframeWidth,jframeheight));
 		window.setResizable(false);
 		window.setVisible(true);
 		window.getContentPane().setBackground(Color.LIGHT_GRAY);
 		window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		window.add(textarea);
-		textarea.setBounds(10, 10, 490, 490);
+		textarea.setBounds(10, 10, jframeWidth-10, jframeheight-10);
 		textarea.addKeyListener(this);
 		textarea.setFocusable(true);
 		
