@@ -4,9 +4,9 @@ public class Lumos {
 
 	public static void main(String[] args) {
 		//start the game here
-		Game game = new Game(87, 25);
+		Game game = new Game(640, 480);
 	}
 	//68 wide, 26 high for 500x500
 	//87 wide, 25 high for 640x480
-	//x wide, y high for 320x
+	//191 wide, 42 high for 1366x768
 }

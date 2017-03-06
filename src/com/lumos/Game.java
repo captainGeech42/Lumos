@@ -13,21 +13,25 @@ public class Game implements KeyListener {
 	private char[][] frame;
 	private Player player;
 	
-	private int width;
-	private int height;
+	private int charWidth;
+	private int charHeight;
+	private int windowWidth;
+	private int windowHeight;
 	
 	private JFrame window;
 	private JTextArea textarea;
 	
-	public Game(int width, int height) {
-		//arguments are num chars wide, high
+	public Game(int windowWidth, int windowHeight) {
+		this.windowWidth = windowWidth;
+		this.windowHeight = windowHeight;
 		
-		frame = new char[height][width];
+		calculateCharBoundaries(true);
+		frame = new char[charHeight][charWidth];
 		player = new Player(10, "player1");
 		
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++) {
-				if (i == Math.floor(height/2) && j == Math.floor(width/2)) {
+		for (int i = 0; i < charHeight; i++) {
+			for (int j = 0; j < charWidth; j++) {
+				if (i == Math.floor(charHeight/2) && j == Math.floor(charWidth/2)) {
 					frame[i][j] = '@';
 					player.setY(i);
 					player.setX(j);
@@ -37,42 +41,47 @@ public class Game implements KeyListener {
 			}
 		}
 		
-		this.width = width;
-		this.height = height;
-		
 		textarea = new JTextArea(8, 7);
 		textarea.setEditable(false);
 		textarea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 		textarea.setForeground(Color.BLACK);
 		textarea.setBackground(Color.LIGHT_GRAY);
 
-
-		final int jframeWidth = 640;
-		final int jframeheight = 480;
 		window = new JFrame("Lumos");
 		window.setLayout(null);
 		window.setLocation(0,0);
-		window.setSize(new Dimension(jframeWidth,jframeheight));
+		window.setSize(new Dimension(windowWidth, windowHeight));
 		window.setResizable(false);
 		window.setVisible(true);
 		window.getContentPane().setBackground(Color.LIGHT_GRAY);
 		window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		window.add(textarea);
-		textarea.setBounds(10, 10, jframeWidth-10, jframeheight-10);
+		textarea.setBounds(10, 10, windowWidth-10, windowHeight-10);
 		textarea.addKeyListener(this);
 		textarea.setFocusable(true);
 		
 		renderFrame();
 	}
+	
+	private void calculateCharBoundaries(boolean printToConsole) {
+		//TODO conversion constants don't work for bigger resolutions
+		charWidth = (int) Math.floor(windowWidth / 7.3);
+		charHeight = (int) Math.floor(windowHeight / 19);
+		
+		if (printToConsole) {
+			System.out.println(String.format("Window Resolution: %sx%s", windowWidth, windowHeight));
+			System.out.println(String.format("Character Resolution: %sx%s", charWidth, charHeight));
+		}
+	}
 
 	private boolean update(char[][] frame) {
-		if (frame.length != height && frame[0].length != width) {
+		if (frame.length != charHeight && frame[0].length != charWidth) {
 			//make sure that new frame is valid dimensions
 			return false;
 		}
 
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++) {
+		for (int i = 0; i < charHeight; i++) {
+			for (int j = 0; j < charWidth; j++) {
 				this.frame[i][j] = frame[i][j];
 			}
 		}
@@ -83,13 +92,13 @@ public class Game implements KeyListener {
 	
 	private void renderFrame() {
 		resetWindow();
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++) {
+		for (int i = 0; i < charHeight; i++) {
+			for (int j = 0; j < charWidth; j++) {
 				addTextToWindow(frame[i][j]);
 			}
 			addTextToWindow("\n");
 		}
-		System.out.println(String.format("player at (%s,%s)", player.getX(), player.getY()));
+		System.out.println(String.format("Player at (%s,%s)", player.getX(), player.getY()));
 	}
 
 	private void resetWindow() {
