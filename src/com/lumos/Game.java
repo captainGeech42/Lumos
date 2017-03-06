@@ -27,11 +27,6 @@ public class Game implements KeyListener {
 		
 		calculateCharBoundaries(true);
 		frame = new char[charWidth][charHeight];
-//		for (int i = 0; i < charWidth; i++) {
-//			for (int j = 0; j < charHeight; j++) {
-//				frame[i][j] = '.';
-//			}
-//		}
 		
 		player = new Player(10, "player1");
 		player.setX((int) Math.floor(charWidth/2)); 
@@ -81,10 +76,8 @@ public class Game implements KeyListener {
 				}
 			}
 		}
-		player.setX(player.getDx() + player.getX());
-		player.setY(player.getDy() + player.getY());
-		player.setDx(0);
-		player.setDy(0);
+		player.moveX();
+		player.moveY();
 	}
 	
 	private void renderFrame() {

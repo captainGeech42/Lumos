@@ -4,6 +4,7 @@ public class Lumos {
 
 	public static void main(String[] args) {
 		//start the game here
+		@SuppressWarnings("unused")
 		Game game = new Game(640, 480);
 	}
 	//68 wide, 26 high for 500x500

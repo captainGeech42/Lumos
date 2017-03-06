@@ -82,4 +82,14 @@ public class Player implements Character {
 	public void setDy(int dy) {
 		this.dy = dy;
 	}
+	
+	public void moveX() {
+		x += dx;
+		dx = 0;
+	}
+	
+	public void moveY() {
+		y += dy;
+		dy = 0;
+	}
 }
