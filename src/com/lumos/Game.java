@@ -26,22 +26,18 @@ public class Game implements KeyListener {
 		this.windowHeight = windowHeight;
 		
 		calculateCharBoundaries(true);
-		frame = new char[charHeight][charWidth];
+		frame = new char[charWidth][charHeight];
+//		for (int i = 0; i < charWidth; i++) {
+//			for (int j = 0; j < charHeight; j++) {
+//				frame[i][j] = '.';
+//			}
+//		}
+		
 		player = new Player(10, "player1");
-		
-		for (int i = 0; i < charHeight; i++) {
-			for (int j = 0; j < charWidth; j++) {
-				if (i == Math.floor(charHeight/2) && j == Math.floor(charWidth/2)) {
-					frame[i][j] = '@';
-					player.setY(i);
-					player.setX(j);
-				} else {
-					frame[i][j] = '.';
-				}
-			}
-		}
-		
-		textarea = new JTextArea(8, 7);
+		player.setX((int) Math.floor(charWidth/2)); 
+		player.setY((int) Math.floor(charHeight/2));
+
+		textarea = new JTextArea(charWidth, charHeight);
 		textarea.setEditable(false);
 		textarea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 		textarea.setForeground(Color.BLACK);
@@ -73,28 +69,30 @@ public class Game implements KeyListener {
 			System.out.println(String.format("Character Resolution: %sx%s", charWidth, charHeight));
 		}
 	}
-
-	private boolean update(char[][] frame) {
-		if (frame.length != charHeight && frame[0].length != charWidth) {
-			//make sure that new frame is valid dimensions
-			return false;
-		}
-
-		for (int i = 0; i < charHeight; i++) {
-			for (int j = 0; j < charWidth; j++) {
-				this.frame[i][j] = frame[i][j];
+	
+	private void updatePositions() {
+		for (int i = 0; i < charWidth; i++) {
+			for (int j = 0; j < charHeight; j++) {
+				if (i == player.getX() && j == player.getY()) {
+					frame[i][j] = '.';
+					frame[i+player.getDx()][j+player.getDy()] = '@';
+				} else {
+					frame[i][j] = '.';
+				}
 			}
 		}
-		
-		renderFrame();
-		return true;
+		player.setX(player.getDx() + player.getX());
+		player.setY(player.getDy() + player.getY());
+		player.setDx(0);
+		player.setDy(0);
 	}
 	
 	private void renderFrame() {
 		resetWindow();
+		updatePositions();
 		for (int i = 0; i < charHeight; i++) {
 			for (int j = 0; j < charWidth; j++) {
-				addTextToWindow(frame[i][j]);
+				addTextToWindow(frame[j][i]);
 			}
 			addTextToWindow("\n");
 		}
@@ -115,29 +113,59 @@ public class Game implements KeyListener {
 		textarea.setText(old + text);
 	}
 	
+	private void processKey(Key key) {
+		switch (key) {
+		case LEFT_ARROW:
+			player.setDx(-1);
+			break;
+		case RIGHT_ARROW:
+			player.setDx(1);
+			break;
+		case UP_ARROW:
+			player.setDy(-1);
+			break;
+		case DOWN_ARROW:
+			player.setDy(1);
+			break;
+		case INVALID:
+			//intentionally empty case
+			break;
+		}
+		updatePositions();
+		renderFrame();
+	}
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println(String.format("%s key pressed", e.getKeyCode()));
-		wait(250);
+//		System.out.println(String.format("%s key pressed", e.getKeyCode()));
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		System.out.println(String.format("%s key released", e.getKeyCode()));
-		wait(250);
+		Key key = Key.INVALID;
+		switch (e.getKeyCode()) {
+		case 37:
+			key = Key.LEFT_ARROW;
+			break;
+		case 39:
+			key = Key.RIGHT_ARROW;
+			break;
+		case 38:
+			key = Key.UP_ARROW;
+			break;
+		case 40:
+			key = Key.DOWN_ARROW;
+			break;
+		default:
+			break;
+		}
+//		System.out.println(String.format("%s released", e.getKeyCode()));
+		System.out.println(String.format("received %s", key));
+		processKey(key);
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		System.out.println(String.format("%s key typed", e.getKeyCode()));
-		wait(250);
-	}
-	
-	private void wait(int time) {
-		try {
-			Thread.sleep(time);
-		} catch (InterruptedException e1) {
-			System.err.println(e1.toString());
-		}
+//		System.out.println(String.format("%s key typed", e.getKeyCode()));
 	}
 }

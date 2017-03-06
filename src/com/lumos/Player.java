@@ -8,8 +8,8 @@ public class Player implements Character {
 	
 	private int x;
 	private int y;
-	private int dx;
-	private int dy;
+	private int dx = 0;
+	private int dy = 0;
 	
 	private Inventory inventory;
 	
