@@ -36,8 +36,6 @@ public class InputMonitor implements KeyListener {
 			break;
 		}
 		window.processInput(key);
-//		System.out.println(String.format("%s released", e.getKeyCode()));
-		System.out.println(String.format("received %s", key));
 	}
 
 	@Override
