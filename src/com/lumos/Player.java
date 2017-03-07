@@ -6,10 +6,14 @@ public class Player extends Character {
 	
 	public Player(int health, String name) {
 		super(health, name);
-		
+
 		inventory = new Inventory();
 
 		Item waterBottles = new Item(5, "Water Bottle", false, ItemType.CONSUMABLE);
 		inventory.addItem(waterBottles);
+	}
+
+	public Inventory getInventory() {
+		return inventory;
 	}
 }
