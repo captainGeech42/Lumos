@@ -64,13 +64,11 @@ public class Window {
 	}
 	
 	private void addTextToWindow(char text) {
-		String old = jtextarea.getText();
-		jtextarea.setText(old + text);
+		jtextarea.append(String.valueOf(text));
 	}
 	
 	private void addTextToWindow(String text) {
-		String old = jtextarea.getText();
-		jtextarea.setText(old + text);
+		jtextarea.append(text);
 	}
 	
 	protected void renderFrame() {
