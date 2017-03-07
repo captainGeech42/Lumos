@@ -44,16 +44,24 @@ public class MainWindow extends Window {
 		super.processInput(key);
 		switch (key) {
 			case LEFT_ARROW:
-				player.setDx(-1);
+				if (player.getX() != 0) {
+					player.setDx(-1);
+				}
 				break;
 			case RIGHT_ARROW:
-				player.setDx(1);
+				if (player.getX() != (charWidth - 1)) {
+					player.setDx(1);
+				}
 				break;
 			case UP_ARROW:
-				player.setDy(-1);
+				if (player.getY() != 0) {
+					player.setDy(-1);
+				}
 				break;
 			case DOWN_ARROW:
-				player.setDy(1);
+				if (player.getY() != (charHeight - 1)) {
+					player.setDy(1);
+				}
 				break;
 			case INVALID:
 				//intentionally empty case
