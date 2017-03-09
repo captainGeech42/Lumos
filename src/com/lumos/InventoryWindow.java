@@ -128,20 +128,20 @@ public class InventoryWindow extends Window implements Runnable {
 			frame[0][i] = '#';
 			frame[charWidth - 1][i] = '#';
 		}
-		String label = "Name: ";
-		for (int i = 2; i < label.length() + 1; i++) {
+		String label = "Name:";
+		for (int i = 2; i < label.length() + 2; i++) {
 			frame[i][1] = label.charAt(i - 2);
 		}
-		label = "Durability: ";
-		for (int i = 2; i < label.length() + 1; i++) {
+		label = "Durability:";
+		for (int i = 2; i < label.length() + 2; i++) {
 			frame[i][2] = label.charAt(i - 2);
 		}
-		label = "Strength: ";
-		for (int i = 2; i < label.length() + 1; i++) {
+		label = "Strength:";
+		for (int i = 2; i < label.length() + 2; i++) {
 			frame[i][3] = label.charAt(i - 2);
 		}
-		label = "Type: ";
-		for (int i = 2; i < label.length() + 1; i++) {
+		label = "Type:";
+		for (int i = 2; i < label.length() + 2; i++) {
 			frame[i][4] = label.charAt(i - 2);
 		}
 		return frame;

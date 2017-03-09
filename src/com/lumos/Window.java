@@ -17,7 +17,7 @@ public class Window {
 	protected int windowHeight;
 	protected boolean hasBeenInitalized = false;
 	
-	public Window(String title, int windowWidth, int windowHeight, int charWidth, int charHeight, int locationX, int locationY) {
+	protected Window(String title, int windowWidth, int windowHeight, int charWidth, int charHeight, int locationX, int locationY) {
 		this.windowWidth = windowWidth;
 		this.windowHeight = windowHeight;
 		this.charWidth = charWidth;

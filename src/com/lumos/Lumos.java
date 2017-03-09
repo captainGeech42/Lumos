@@ -6,5 +6,6 @@ public class Lumos {
 		//start the game here
 		@SuppressWarnings("unused")
 		Game game = new Game();
+
 	}
 }
