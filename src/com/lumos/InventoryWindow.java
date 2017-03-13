@@ -30,6 +30,7 @@ public class InventoryWindow extends Window implements Runnable {
 	@Override
 	public void initUI() {
 		super.initUI();
+		inventory = Game.getInstance().getPlayer().getInventory();
 		myThread.start();
 	}
 

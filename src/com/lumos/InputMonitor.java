@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 public class InputMonitor implements KeyListener {
 
 	private Window window;
+
+	private static boolean log = true;
 	
 	public InputMonitor(Window window) {
 		this.window = window;
@@ -34,6 +36,9 @@ public class InputMonitor implements KeyListener {
 			break;
 		default:
 			break;
+		}
+		if (log) {
+			System.out.println(String.format("received %s from %s", key, window));
 		}
 		window.processInput(key);
 	}

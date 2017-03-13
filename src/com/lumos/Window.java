@@ -1,7 +1,6 @@
 package com.lumos;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
@@ -16,13 +15,15 @@ public class Window {
 	protected int windowWidth;
 	protected int windowHeight;
 	protected boolean hasBeenInitalized = false;
+	protected String title;
 	
 	protected Window(String title, int windowWidth, int windowHeight, int charWidth, int charHeight, int locationX, int locationY) {
 		this.windowWidth = windowWidth;
 		this.windowHeight = windowHeight;
 		this.charWidth = charWidth;
 		this.charHeight = charHeight;
-		
+		this.title = title;
+
 		charFrame = new char[charWidth][charHeight];
 		
 		jframe = new JFrame(title);
@@ -51,12 +52,17 @@ public class Window {
 		}
 	}
 
+	public void toFront() {
+		jframe.toFront();
+		jframe.setState(Frame.NORMAL);
+	}
+
 	protected void setKeyListener(Window window) {
 		jtextarea.addKeyListener(new InputMonitor(window));
 	}
 
 	public void processInput(Key key) {
-		System.out.println("received " + key);
+		//intentionally empty
 	}
 	
 	private void resetWindow() {
@@ -95,5 +101,10 @@ public class Window {
 	
 	public int getWindowHeight() {
 		return windowHeight;
+	}
+
+	@Override
+	public String toString() {
+		return title;
 	}
 }

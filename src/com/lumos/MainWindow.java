@@ -1,5 +1,6 @@
 package com.lumos;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -38,6 +39,14 @@ public class MainWindow extends Window {
 	protected void renderFrame() {
 		updatePositions();
 		super.renderFrame();
+	}
+
+	@Override
+	public void initUI() {
+		super.initUI();
+		player = Game.getInstance().getPlayer();
+		characters.add(player);
+		renderFrame();
 	}
 
 	public void processInput(Key key) {
