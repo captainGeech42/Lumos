@@ -54,27 +54,28 @@ public class InventoryWindow extends Window implements Runnable {
 				while (itemsIterator.hasNext()) {
 					Item item = itemsIterator.next();
 					char[][] frame = getItemFrame();
+					char icon = item.getIcon();
 
-					String name = item.getName();
-					for (int i = 0; i < name.length(); i++) {
-						frame[i+8][1] = name.charAt(i);
-					}
-
-					String durability = String.valueOf(item.getDurability());
-					for (int i = 0; i < durability.length(); i++) {
-						frame[i+14][2] = durability.charAt(i);
-					}
-
-					String strength = String.valueOf(item.getStrength());
-					for (int i = 0; i < strength.length(); i++) {
-						frame[i+12][3] = strength.charAt(i);
-					}
-
-					String type = item.getType().toString();
-					type = type.substring(0, 1) + type.substring(1).toLowerCase();
-					for (int i = 0; i < type.length(); i++) {
-						frame[i+8][4] = type.charAt(i);
-					}
+//					String name = item.getName();
+//					for (int i = 0; i < name.length(); i++) {
+//						frame[i+8][1] = name.charAt(i);
+//					}
+//
+//					String durability = String.valueOf(item.getDurability());
+//					for (int i = 0; i < durability.length(); i++) {
+//						frame[i+14][2] = durability.charAt(i);
+//					}
+//
+//					String strength = String.valueOf(item.getStrength());
+//					for (int i = 0; i < strength.length(); i++) {
+//						frame[i+12][3] = strength.charAt(i);
+//					}
+//
+//					String type = item.getType().toString();
+//					type = type.substring(0, 1) + type.substring(1).toLowerCase();
+//					for (int i = 0; i < type.length(); i++) {
+//						frame[i+8][4] = type.charAt(i);
+//					}
 					itemFrames.add(frame);
 					charFrame = frame;
 					renderFrame();
@@ -121,30 +122,31 @@ public class InventoryWindow extends Window implements Runnable {
 				frame[i][j] = ' ';
 			}
 		}
-		for (int i = 0; i < charWidth; i++) {
-			frame[i][0] = '#';
-			frame[i][charHeight - 1] = '#';
-		}
-		for (int i = 1; i < (charHeight - 1); i++) {
-			frame[0][i] = '#';
-			frame[charWidth - 1][i] = '#';
-		}
-		String label = "Name:";
-		for (int i = 2; i < label.length() + 2; i++) {
-			frame[i][1] = label.charAt(i - 2);
-		}
-		label = "Durability:";
-		for (int i = 2; i < label.length() + 2; i++) {
-			frame[i][2] = label.charAt(i - 2);
-		}
-		label = "Strength:";
-		for (int i = 2; i < label.length() + 2; i++) {
-			frame[i][3] = label.charAt(i - 2);
-		}
-		label = "Type:";
-		for (int i = 2; i < label.length() + 2; i++) {
-			frame[i][4] = label.charAt(i - 2);
-		}
+//		for (int i = 0; i < charWidth; i++) {
+//			frame[i][0] = '#';
+//			frame[i][charHeight - 1] = '#';
+//		}
+//		for (int i = 1; i < (charHeight - 1); i++) {
+//			frame[0][i] = '#';
+//			frame[charWidth - 1][i] = '#';
+//		}
+//		String label = "Name:";
+//		for (int i = 2; i < label.length() + 2; i++) {
+//			frame[i][1] = label.charAt(i - 2);
+//		}
+//		label = "Durability:";
+//		for (int i = 2; i < label.length() + 2; i++) {
+//			frame[i][2] = label.charAt(i - 2);
+//		}
+//		label = "Strength:";
+//		for (int i = 2; i < label.length() + 2; i++) {
+//			frame[i][3] = label.charAt(i - 2);
+//		}
+//		label = "Type:";
+//		for (int i = 2; i < label.length() + 2; i++) {
+//			frame[i][4] = label.charAt(i - 2);
+//		}
+
 		return frame;
 	}
 

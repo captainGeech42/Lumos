@@ -7,12 +7,18 @@ public class Item {
 	private String name;
 	private boolean isUnique;
 	private ItemType type;
+	private char icon;
 	
-	public Item(int durability, String name, boolean isUnique, ItemType type) {
+	public Item(int durability, String name, boolean isUnique, ItemType type, char icon) {
 		this.durability = durability;
 		this.name = name;
 		this.isUnique = isUnique;
 		this.type = type;
+		this.icon = icon;
+	}
+
+	public char getIcon() {
+		return icon;
 	}
 	
 	public int getStrength() {

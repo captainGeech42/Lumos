@@ -9,7 +9,7 @@ public class Game {
 	
 	private MainWindow mainWindow;
 	private InventoryWindow inventoryWindow;
-	private StatWindow statWindow;
+//	private StatWindow statWindow;
 
 	private ArrayList<Window> windows;
 
@@ -23,12 +23,12 @@ public class Game {
 	private Game() {
 		mainWindow = new MainWindow(640, 480, 87, 25, 0, 0);
 		inventoryWindow = new InventoryWindow(300, 150, 39, 6, 645, 0);
-		statWindow = new StatWindow(300, 325,39,16, 645, 155);
+//		statWindow = new StatWindow(300, 325,39,16, 645, 155);
 
 		windows = new ArrayList<Window>();
 		windows.add(mainWindow);
 		windows.add(inventoryWindow);
-		windows.add(statWindow);
+//		windows.add(statWindow);
 		
 		player = new Player(10, "Player 1");
 		player.setX((int) Math.floor(mainWindow.getCharWidth()/2)); 

@@ -9,7 +9,7 @@ public class Player extends Character {
 
 		inventory = new Inventory();
 
-		Item waterBottles = new Item(5, "Water Bottle", false, ItemType.CONSUMABLE);
+		Item waterBottles = new Item(5, "Water Bottle", false, ItemType.CONSUMABLE, 'W');
 		inventory.addItem(waterBottles);
 	}
 
